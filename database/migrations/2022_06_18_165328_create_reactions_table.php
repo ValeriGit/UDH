@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('reactions', function (Blueprint $table) {
             $table->id();
+            $table->enum('value', [Reaction::LIKE, Reaction::DISLIKE]);
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('reactionable_id');
+            $table->string('reactionable_type');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
