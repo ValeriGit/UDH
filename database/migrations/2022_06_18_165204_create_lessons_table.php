@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('lessons', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('url');
+            $table->string('iframe');
+            $table->unsignedBigInteger('module_id');
+            $table->unsignedBigInteger('platform_id')->nullable();
+            $table->foreign('module_id')->references('id')->on('modules')->onDelete('cascade');
+            $table->foreign('platform_id')->references('id')->on('platforms')->onDelete('set null');
             $table->timestamps();
         });
     }
