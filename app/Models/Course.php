@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     use HasFactory;
+    const ELABORACION = 1;
+    const REVISIÓN = 2;
+    const PUBLICADO = 3;
+    public $guarded = ['id', 'status'];
     public function teacher()
     {
         return $this->belongsTo(User::class, 'user_id');
